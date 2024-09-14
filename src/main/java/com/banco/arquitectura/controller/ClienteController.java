@@ -4,10 +4,7 @@ import com.banco.arquitectura.bd.orm.ClienteORM;
 import com.banco.arquitectura.controller.dto.ClienteDTO;
 import com.banco.arquitectura.logica.ClienteService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,16 @@ public class ClienteController {
     @GetMapping(path = "/clientes")
     public List<ClienteORM> verClientes() {
         return clienteService.verClientes();
+    }
+
+    @GetMapping(path = "/cliente/{cedula}")
+    public ClienteORM verCliente(@PathVariable String cedula) {
+        return clienteService.verCliente(cedula);
+    }
+
+    @DeleteMapping(path = "/cliente/eliminar/{cedula}")
+    public String eliminarCliente(@PathVariable String cedula) {
+        clienteService.eliminarCliente(cedula);
+        return "Cliente eliminado";
     }
 }

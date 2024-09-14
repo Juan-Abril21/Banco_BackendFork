@@ -29,4 +29,17 @@ public class ClienteService {
     public List<ClienteORM> verClientes(){
         return clienteJPA.findAll();
     }
+
+    public ClienteORM verCliente(String cedula){
+        return clienteJPA.findByCedula(cedula).orElseThrow(
+                () -> new ArithmeticException("No existe un cliente con la cedula: " + cedula)
+        );
+    }
+
+    public void eliminarCliente(String cedula){
+        if (clienteJPA.findByCedula(cedula).isEmpty()){
+            throw new ArithmeticException("No existe un cliente con la cedula: " + cedula);
+        }
+        clienteJPA.deleteById(clienteJPA.findByCedula(cedula).get().getId());
+    }
 }
