@@ -16,8 +16,8 @@ public class CuentaService {
     private final CuentaJPA cuentaJPA;
     private final ClienteJPA clienteJPA;
 
-    public long crearCuenta(String cedula){
-        if (!clienteJPA.findByCedula(cedula).isPresent()){
+    public boolean crearCuenta(String cedula){
+        if (clienteJPA.findByCedula(cedula).isEmpty()){
             throw new ArithmeticException("No existe un cliente con la cedula: " + cedula);
         }
         CuentaORM nuevaCuenta = new CuentaORM();
@@ -26,19 +26,17 @@ public class CuentaService {
         nuevaCuenta.setSaldo(0.0);
         nuevaCuenta.setFecha_creacion(LocalDate.now());
         cuentaJPA.save(nuevaCuenta);
-        CuentaORM cuentaGuardada = cuentaJPA.save(nuevaCuenta);
-        return cuentaGuardada.getId();
+        return true;
     }
 
-    public Double depositar(long id, double monto){
+    public boolean depositar(long id, double monto){
         if(monto <= 0){
             throw new ArithmeticException("El monto a depositar debe ser mayor a 0");
         }
         CuentaORM cuenta = cuentaJPA.findById(id).get();
         cuenta.setSaldo(cuenta.getSaldo() + monto);
         cuentaJPA.save(cuenta);
-        CuentaORM cuentaGuardada = cuentaJPA.save(cuenta);
-        return cuentaGuardada.getSaldo();
+        return true;
     }
 
     public List<CuentaORM> verCuentas(){

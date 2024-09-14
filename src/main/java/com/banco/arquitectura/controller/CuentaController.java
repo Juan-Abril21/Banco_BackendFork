@@ -16,13 +16,15 @@ public class CuentaController {
     private CuentaService cuentaService;
 
     @PostMapping(path = "/cuenta")
-    public long guardarCuenta(@RequestBody CuentaDTO cuentaDTO) {
-        return cuentaService.crearCuenta(cuentaDTO.cedula());
+    public String guardarCuenta(@RequestBody CuentaDTO cuentaDTO) {
+        cuentaService.crearCuenta(cuentaDTO.cedula());
+        return "Cuenta guardada";
     }
 
     @PostMapping(path = "/deposito")
-    public Double depositar(@RequestBody DepositoDTO depositoDTO) {
-        return cuentaService.depositar(depositoDTO.id(), depositoDTO.monto());
+    public String depositar(@RequestBody DepositoDTO depositoDTO) {
+        cuentaService.depositar(depositoDTO.id(), depositoDTO.monto());
+        return "Deposito realizado";
     }
 
     @GetMapping(path = "/cuentas")
