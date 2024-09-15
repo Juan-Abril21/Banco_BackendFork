@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
 # Copiar el código fuente al contenedor
 COPY . .
 
+# Dar permisos de ejecución al archivo gradlew
+RUN chmod +x ./gradlew
+
 # Ejecutar Gradle para generar el archivo .jar
 RUN ./gradlew bootJar --no-daemon
 
