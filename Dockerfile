@@ -1,18 +1,25 @@
-FROM ubuntu:latest AS build
+# Fase de construcción (Build stage)
+FROM openjdk:17-slim AS build
+
+# Instalar dependencias necesarias para la compilación
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
     git \
-    libboost-all-dev \
-    libssl-dev \
-    libtool \
-    pkg-config \
-    wget \
-RUN apt-get install openjdk-17-jdk -y
+    wget
+
+# Copiar el código fuente al contenedor
 COPY . .
+
+# Ejecutar Gradle para generar el archivo .jar
 RUN ./gradlew bootJar --no-daemon
 
-FROM openjdk-17-jdk-slim
+# Fase de ejecución (Run stage)
+FROM openjdk:17-slim
+
+# Exponer el puerto donde corre la aplicación
 EXPOSE 8080
+
+# Copiar el archivo .jar generado desde la fase de construcción
 COPY --from=build /build/libs/*.jar app.jar
+
+# Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
