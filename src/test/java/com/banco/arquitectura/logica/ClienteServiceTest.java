@@ -39,5 +39,33 @@ class ClienteServiceTest {
         Mockito.verify(clienteJPA).findAll();
     }
 
+    @Test
+    void When_verCliente_Then_returnCliente() {
+        Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.of(new ClienteORM()));
+        service.verCliente("123");
+        Mockito.verify(clienteJPA).findByCedula("123");
+    }
 
+    @Test
+    void Given_cedulaNoExistente_When_verCliente_Then_throwArithmeticException() {
+        Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.empty());
+        Assertions.assertThrows(ArithmeticException.class,
+                () -> service.verCliente("123")
+        );
+    }
+
+    @Test
+    void When_eliminarCliente_Then_deleteCliente() {
+        Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.of(new ClienteORM()));
+        service.eliminarCliente("123");
+        Mockito.verify(clienteJPA).deleteById(Mockito.any());
+    }
+
+    @Test
+    void Given_cedulaNoExistente_When_eliminarCliente_Then_throwArithmeticException() {
+        Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.empty());
+        Assertions.assertThrows(ArithmeticException.class,
+                () -> service.eliminarCliente("123")
+        );
+    }
 }

@@ -15,7 +15,7 @@ RUN chmod +x ./gradlew
 # Ejecutar Gradle para generar el archivo .jar
 RUN ./gradlew bootJar --no-daemon
 
-# Fase de ejecución (Run stage)
+# Fase de ejecución (Run stage)p
 FROM openjdk:17-slim
 
 # Exponer el puerto donde corre la aplicación
