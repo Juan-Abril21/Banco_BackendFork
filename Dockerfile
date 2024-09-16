@@ -26,3 +26,5 @@ COPY --from=build /build/libs/*.jar app.jar
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# estoy intentando activar el ci
