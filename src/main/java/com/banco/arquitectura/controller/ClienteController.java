@@ -30,6 +30,12 @@ public class ClienteController {
         return clienteService.verCliente(cedula);
     }
 
+    @PutMapping(path = "/cliente/actualizar")
+    public String actualizarCliente(@RequestBody ClienteDTO clienteDTO) {
+        clienteService.actualizarCliente(clienteDTO.nombre(), clienteDTO.cedula());
+        return "Cliente actualizado";
+    }
+
     @DeleteMapping(path = "/cliente/eliminar/{cedula}")
     public String eliminarCliente(@PathVariable String cedula) {
         clienteService.eliminarCliente(cedula);

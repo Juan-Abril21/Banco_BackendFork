@@ -36,6 +36,15 @@ public class ClienteService {
         );
     }
 
+    public void actualizarCliente(String nombre, String cedula){
+        if (clienteJPA.findByCedula(cedula).isEmpty()){
+            throw new ArithmeticException("No existe un cliente con la cedula: " + cedula);
+        }
+        ClienteORM cliente = clienteJPA.findByCedula(cedula).get();
+        cliente.setNombre(nombre);
+        clienteJPA.save(cliente);
+    }
+
     public void eliminarCliente(String cedula){
         if (clienteJPA.findByCedula(cedula).isEmpty()){
             throw new ArithmeticException("No existe un cliente con la cedula: " + cedula);

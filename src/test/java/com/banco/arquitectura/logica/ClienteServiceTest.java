@@ -55,6 +55,21 @@ class ClienteServiceTest {
     }
 
     @Test
+    void When_actualizarCliente_Then_updateCliente() {
+        Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.of(new ClienteORM()));
+        service.actualizarCliente("Juan", "123");
+        Mockito.verify(clienteJPA).save(Mockito.any());
+    }
+
+    @Test
+    void Given_cedulaNoExistente_When_actualizarCliente_Then_throwArithmeticException() {
+        Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.empty());
+        Assertions.assertThrows(ArithmeticException.class,
+                () -> service.actualizarCliente("Juan", "123")
+        );
+    }
+
+    @Test
     void When_eliminarCliente_Then_deleteCliente() {
         Mockito.when(clienteJPA.findByCedula("123")).thenReturn(java.util.Optional.of(new ClienteORM()));
         service.eliminarCliente("123");
