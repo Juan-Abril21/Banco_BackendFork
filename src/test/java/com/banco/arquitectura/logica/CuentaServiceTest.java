@@ -66,7 +66,7 @@ class CuentaServiceTest {
     @Test
     void When_verCuentasPorCedula_Then_returnList() {
         serviceCuenta.verCuentasPorCedula("123");
-        Mockito.verify(cuentaJPA).findByCedula("123");
+        Mockito.verify(cuentaJPA).findByCliente_Cedula("123");
     }
 
     @Test

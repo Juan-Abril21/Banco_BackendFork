@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Table(name = "clientes")
 @Entity
@@ -17,8 +18,11 @@ public class ClienteORM {
     private Long id;
     @Column
     private String nombre;
-    @Column
+    @Column(unique = true)
     private String cedula;
     @Column
     private LocalDate fecha_creacion;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CuentaORM> cuentas;
 }

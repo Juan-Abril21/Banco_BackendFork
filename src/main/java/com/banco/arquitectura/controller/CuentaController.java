@@ -16,8 +16,8 @@ public class CuentaController {
     private CuentaService cuentaService;
 
     @PostMapping(path = "/cuenta")
-    public String guardarCuenta(@RequestBody CuentaDTO cuentaDTO) {
-        cuentaService.crearCuenta(cuentaDTO.cedula());
+    public String guardarCuenta(@RequestParam String cedula) {
+        cuentaService.crearCuenta(cedula);
         return "Cuenta guardada";
     }
 
@@ -28,7 +28,7 @@ public class CuentaController {
     }
 
     @GetMapping(path = "/cuentas")
-    public List<CuentaORM> verCuentas() {
+    public List<CuentaDTO> verCuentas() {
         return cuentaService.verCuentas();
     }
 
