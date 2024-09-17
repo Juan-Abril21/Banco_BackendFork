@@ -53,8 +53,15 @@ public class CuentaService {
                 .collect(Collectors.toList());
     }
 
-    public List<CuentaORM> verCuentasPorCedula(String cedula){
-        return cuentaJPA.findByCliente_Cedula(cedula);
+    public List<CuentaDTO> verCuentasPorCedula(String cedula){
+        return cuentaJPA.findByCliente_Cedula(cedula).stream().map(cuenta -> new CuentaDTO(
+                        cuenta.getId(),
+                        cuenta.getCliente().getCedula(),
+                        cuenta.getCliente().getNombre(),
+                        cuenta.getSaldo(),
+                        cuenta.getFecha_creacion()
+                ))
+                .collect(Collectors.toList());
     }
 
     public void eliminarCuenta(long id){
