@@ -33,7 +33,7 @@ public class CuentaController {
     }
 
     @GetMapping(path = "/cuentas/{cedula}")
-    public List<CuentaORM> verCuentasPorCedula(@PathVariable String cedula) {
+    public List<CuentaDTO> verCuentasPorCedula(@PathVariable String cedula) {
         return cuentaService.verCuentasPorCedula(cedula);
     }
 
