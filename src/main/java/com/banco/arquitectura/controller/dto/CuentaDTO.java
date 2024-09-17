@@ -1,5 +1,7 @@
 package com.banco.arquitectura.controller.dto;
 
-public record CuentaDTO(String cedula, Double saldo) {
+import java.time.LocalDate;
+
+public record CuentaDTO(Long id, String cedula, String nombre, Double saldo, LocalDate fechaCreacion) {
 
 }
