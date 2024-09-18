@@ -21,7 +21,7 @@ public class CuentaController {
         return "Cuenta guardada";
     }
 
-    @PostMapping(path = "/depositar")
+    @PutMapping(path = "/cuenta/depositar")
     public String depositar(@RequestBody DepositoDTO depositoDTO) {
         cuentaService.depositar(depositoDTO.id(), depositoDTO.monto());
         return "Deposito realizado";
