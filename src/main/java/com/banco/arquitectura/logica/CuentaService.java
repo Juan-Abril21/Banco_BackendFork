@@ -39,7 +39,7 @@ public class CuentaService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "El monto a depositar debe ser mayor a 0");
         }
         CuentaORM cuenta = cuentaJPA.findById(id)
-                .orElseThrow(() -> new ArithmeticException("No existe una cuenta con el id: " + id));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe una cuenta con el id: " + id));
         cuenta.setSaldo(cuenta.getSaldo() + monto);
         cuentaJPA.save(cuenta);
     }

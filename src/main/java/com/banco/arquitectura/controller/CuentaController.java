@@ -1,6 +1,5 @@
 package com.banco.arquitectura.controller;
 
-import com.banco.arquitectura.bd.orm.CuentaORM;
 import com.banco.arquitectura.controller.dto.CuentaDTO;
 import com.banco.arquitectura.controller.dto.DepositoDTO;
 import com.banco.arquitectura.logica.CuentaService;
