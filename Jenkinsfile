@@ -11,11 +11,10 @@ pipeline {
 
         stage('Compile') {
             steps {
-                // Compile the component and fail the build if it doesn't compile
                 script {
                     try {
-                        // Intentar compilar el proyecto
-                        sh 'mvn clean compile' // Por ejemplo, en Java con Maven
+                        // Ejecuta el comando de compilación de Gradle
+                        sh './gradlew build' // Ejecuta el build con Gradle
                         echo 'Compilación exitosa.'
                     } catch (Exception e) {
                         echo 'Error de compilación.'
