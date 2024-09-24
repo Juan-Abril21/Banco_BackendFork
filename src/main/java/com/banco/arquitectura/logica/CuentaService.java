@@ -76,6 +76,5 @@ public class CuentaService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe una cuenta con el id: " + id);
         }
         cuentaJPA.deleteById(id);
-    }
-    
+    }   
 }
