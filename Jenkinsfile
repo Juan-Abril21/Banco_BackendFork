@@ -27,14 +27,12 @@ pipeline {
 
     post {
         success {
-            // Notifica a GitHub que la compilación fue exitosa
-            githubCheckStatus(name: 'Compile', status: 'COMPLETED', conclusion: 'SUCCESS')
-            echo 'La compilación fue exitosa.'
+            // Publica el resultado exitoso en GitHub
+            publishChecks name: 'Compile', summary: 'Compilación exitosa', conclusion: 'SUCCESS'
         }
         failure {
-            // Notifica a GitHub que la compilación falló
-            githubCheckStatus(name: 'Compile', status: 'COMPLETED', conclusion: 'FAILURE')
-            echo 'La compilación falló. Notificando a GitHub.'
+            // Publica el resultado fallido en GitHub
+            publishChecks name: 'Compile', summary: 'Compilación fallida', conclusion: 'FAILURE'
         }
     }
 }
