@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/BryamDigar/Banco_BackendFork.git'
+                git branch: 'master', url: 'https://github.com/Juan-Abril21/Banco_BackendFork.git'
             }
         }
         stage('Clean Gradle Daemons') {
