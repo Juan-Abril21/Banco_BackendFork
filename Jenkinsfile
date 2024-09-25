@@ -7,11 +7,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Juan-Abril21/Banco_BackendFork.git'
             }
         }
-        stage('gradle status') {
-            steps {
-                sh 'gradle --status'
-            }
-        }
 
         stage('Build') {
             steps {
