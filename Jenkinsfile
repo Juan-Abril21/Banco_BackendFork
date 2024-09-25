@@ -1,13 +1,11 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
+        stage('Clean Gradle Daemons') {
             steps {
-                git branch: 'master', url: 'https://github.com/Juan-Abril21/Banco_BackendFork.git'
+                sh 'gradle --stop'
             }
         }
-
         stage('Build') {
             steps {
                 sh './gradlew build'
