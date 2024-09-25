@@ -4,35 +4,34 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the code from the repository
-                checkout scm
+                // Clona el repositorio
+                git branch: 'master', url: 'https://github.com/Juan-Abril21/Banco_BackendFork.git'
             }
         }
 
-        stage('Compile') {
+        stage('Build') {
             steps {
-                script {
-                    try {
-                        // Ejecuta el comando de compilación de Gradle
-                        sh './gradlew build' // Ejecuta el build con Gradle
-                        echo 'Compilación exitosa.'
-                    } catch (Exception e) {
-                        echo 'Error de compilación.'
-                        error('La compilación ha fallado. Revisa los logs.')
-                    }
-                }
+                // Ejecuta la compilación utilizando Gradle
+                sh './gradlew clean build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Ejecuta las pruebas unitarias con Gradle
+                sh './gradlew test'
             }
         }
     }
 
     post {
         success {
-            // Publica el resultado exitoso en GitHub
-            publishChecks name: 'Compile', summary: 'Compilación exitosa', conclusion: 'SUCCESS'
+            // Si todo va bien, notifica el éxito en GitHub
+            echo 'Build y pruebas exitosas.'
         }
         failure {
-            // Publica el resultado fallido en GitHub
-            publishChecks name: 'Compile', summary: 'Compilación fallida', conclusion: 'FAILURE'
+            // Si hay un fallo, también lo reporta
+            echo 'El build falló. No se puede realizar el merge.'
         }
     }
 }
