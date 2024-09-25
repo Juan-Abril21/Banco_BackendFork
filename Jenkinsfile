@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('kill Gradle Daemons') {
             steps {
-                sh './gradlew kill 5876'
+                sh 'kill 5876'
             }
         }
         stage('Clean Gradle Daemons') {
