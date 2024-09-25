@@ -7,9 +7,9 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Juan-Abril21/Banco_BackendFork.git'
             }
         }
-        stage('Clean Gradle Daemons') {
+        stage('gradle status') {
             steps {
-                sh 'gradle --stop'
+                sh 'gradle --status'
             }
         }
 
