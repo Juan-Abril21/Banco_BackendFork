@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clean Gradle Daemons') {
             steps {
-                sh './gradlew --stop'
+                sh './gradlew --status'
             }
         }
         stage('Build') {
