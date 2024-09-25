@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Clean Gradle Daemons') {
+        stage('kill Gradle Daemons') {
             steps {
                 sh './gradlew kill 5876'
             }
