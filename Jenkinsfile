@@ -4,6 +4,7 @@ pipeline {
         stage('Clean Gradle Daemons') {
             steps {
                 sh './gradlew --status'
+                sh 'pkill -f gradle || true' 
             }
         }
         stage('Build') {
