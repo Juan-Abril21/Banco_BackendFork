@@ -3,7 +3,12 @@ pipeline {
     stages {
         stage('Clean Gradle Daemons') {
             steps {
-                sh './gradlew ps -ef | grep gradle'
+                sh './gradlew kill 5876'
+            }
+        }
+        stage('Clean Gradle Daemons') {
+            steps {
+                sh './gradlew --status'
             }
         }
         stage('Build') {
