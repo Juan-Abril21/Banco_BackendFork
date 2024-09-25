@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Ejecuta la compilación utilizando Gradle
-                sh './gradlew clean build'
+                sh './gradlew build'
             }
         }
 
