@@ -10,4 +10,4 @@ public class ArquitecturaApplication {
 		SpringApplication.run(ArquitecturaApplication.class, args);
 	}
 
-}
+
