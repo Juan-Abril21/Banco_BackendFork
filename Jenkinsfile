@@ -15,4 +15,5 @@ pipeline {
                 sh './gradlew build'
             }
         }
+    }
 }
