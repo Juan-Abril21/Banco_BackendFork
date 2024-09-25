@@ -1,17 +1,13 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
+        stage('Clean Gradle Daemons') {
             steps {
-                // Clona el repositorio
-                git branch: 'master', url: 'https://github.com/Juan-Abril21/Banco_BackendFork.git'
+                sh 'gradle --stop'
             }
         }
-
         stage('Build') {
             steps {
-                // Ejecuta la compilación utilizando Gradle
                 sh './gradlew build'
             }
         }
