@@ -42,6 +42,7 @@ public class ClienteService {
         if (clienteJPA.findByCedula(cedula).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe un cliente con la cédula: " + cedula);
         }
+        
         ClienteORM cliente = clienteJPA.findByCedula(cedula).get();
         cliente.setNombre(nombre);
         clienteJPA.save(cliente);
@@ -51,6 +52,7 @@ public class ClienteService {
         if (clienteJPA.findByCedula(cedula).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No existe un cliente con la cédula: " + cedula);
         }
+
         
         clienteJPA.deleteById(clienteJPA.findByCedula(cedula).get().getId());
     }
